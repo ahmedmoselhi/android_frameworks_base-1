@@ -151,6 +151,8 @@ public abstract class PanelViewController {
     protected final KeyguardStateController mKeyguardStateController;
     protected final SysuiStatusBarStateController mStatusBarStateController;
 
+    protected boolean mDoubleTapToSleepEnabled;
+
     protected void onExpandingFinished() {
         mBar.onExpandingFinished();
     }
@@ -1230,8 +1232,8 @@ public abstract class PanelViewController {
                         onTrackingStarted();
                     }
                     if (isFullyCollapsed() && !mHeadsUpManager.hasPinnedHeadsUp()
-                            && !mStatusBar.isBouncerShowing()) {
-                        startOpening(event);
+                            && !mStatusBar.isBouncerShowing() && !mDoubleTapToSleepEnabled) {
+			startOpening(event);
                     }
                     break;
 
